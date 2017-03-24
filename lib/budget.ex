@@ -21,7 +21,7 @@ defmodule Budget do
     File.read!("transactions-jan.csv")
     |> parse
     |> filter
-    # |> normalize
+    |> normalize
     # |> sort
     # |> print
   end
@@ -34,5 +34,17 @@ defmodule Budget do
 
   defp filter(rows) do
     Enum.map(rows, &Enum.drop(&1, 1))
+  end
+
+  defp normalize(rows) do
+    Enum.map(rows, &parse_amount(&1))
+  end
+
+  defp parse_amount([date, description, amount]) do
+    [date, description, parse_to_float(amount)]
+  end
+
+  defp parse_to_float(string) do
+    string |> String.to_float()
   end
 end
