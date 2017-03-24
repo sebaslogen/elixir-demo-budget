@@ -23,7 +23,7 @@ defmodule Budget do
     |> filter
     |> normalize
     |> sort
-    # |> print
+    |> print
   end
 
   defp parse(string) do
@@ -56,5 +56,14 @@ defmodule Budget do
 
   defp order_asc_by_amount([_, _, first], [_, _, second]) do
     first < second
+  end
+
+  defp print(rows) do
+    IO.puts "\nTransactions:"
+    Enum.each(rows, &print_to_console(&1))
+  end
+
+  defp print_to_console([date, description, amount]) do
+    IO.puts "#{date} #{description} \t$#{:erlang.float_to_binary(amount, decimals: 2)}"
   end
 end
