@@ -22,7 +22,7 @@ defmodule Budget do
     |> parse
     |> filter
     |> normalize
-    # |> sort
+    |> sort
     # |> print
   end
 
@@ -48,5 +48,13 @@ defmodule Budget do
     string
     |> String.to_float()
     |> abs
+  end
+
+  defp sort(rows) do
+    Enum.sort(rows, &order_asc_by_amount(&1, &2))
+  end
+
+  defp order_asc_by_amount([_, _, first], [_, _, second]) do
+    first < second
   end
 end
