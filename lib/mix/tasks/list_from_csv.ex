@@ -3,6 +3,6 @@ defmodule Mix.Tasks.ListFromCsv do
 
   @shortdoc "Run task that lists transactions from csv"
   def run(_) do
-    Budget.list_transactions |> IO.inspect
+    Budget.list_transactions
   end
 end
