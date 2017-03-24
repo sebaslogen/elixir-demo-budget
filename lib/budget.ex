@@ -25,7 +25,7 @@ defmodule Budget do
     # |> print
   end
 
-  def parse(string) do
-
+  defp parse(string) do
+    
   end
 end
